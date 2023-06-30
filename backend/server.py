@@ -7,9 +7,6 @@ import hashlib
 import base64
 app = Flask(__name__)
 
-#url_put_args = reqparse.RequestParser()
-#url_put_args.add_argument("url", type=str, help="Enter a URL you want to be Shortened", required=True)
-
 def generate_unique_string(url):
     # Calculate the SHA-256 hash of the URL
     hash_object = hashlib.sha256(url.encode())
