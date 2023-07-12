@@ -37,10 +37,30 @@ Use this command to run test cases using unnitest.
 ```
 Examples how to post your URL
 ```
-curl -X POST -H "Content-Type: application/json" -d '{"url":"https://www.google.com/"}' http://127.0.0.1:5000/url -i
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://www.amazon.com/Citizen-Eco-Drive-Weekender-Chronograph-Titanium/dp/B09CQGYDFN"}' http://127.0.0.1:5000/url -i
 ```
 
-
+Returns a JSON object
+```commandline
+{
+  "key": "wBQx0K", 
+  "long_url": "https://www.amazon.com/Citizen-Eco-Drive-Weekender-Chronograph-Titanium/dp/B09CQGYDFN", 
+  "short_url": "http://127.0.0.1:5000/url/wBQx0K"
+}
+```
+Example how to Get your URL
+```commandline
+curl http://127.0.0.1:5000/url/wBQx0K -i
+```
+Returns the location header, so the Long URL will be displayed.
+```commandline
+HTTP/1.0 302 FOUND
+Location: https://www.amazon.com/Citizen-Eco-Drive-Weekender-Chronograph-Titanium/dp/B09CQGYDFN
+Content-Type: text/html; charset=utf-8
+Content-Length: 0
+Server: Werkzeug/1.0.1 Python/3.11.2
+Date: Wed, 12 Jul 2023 02:56:37 GMT
+```
 
 
 

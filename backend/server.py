@@ -61,6 +61,9 @@ class URLMapping(Resource):
     def delete(self, key):
         return '', 204
 
+    def get_urls(self):
+        return url_dict, 200
+
 api = URLMapping()
 
 @app.route('/url', methods=['POST'])
@@ -75,6 +78,10 @@ def get_post():
 @app.route('/url/<string:key>', methods=['GET'])
 def return_get(key):
     return api.get(key)
+
+@app.route('/urls', methods=['GET'])
+def return_urls():
+    return api.get_urls()
 
 # Curl commmands to use
 # curl -X POST -H "Content-Type: application/json" -d '{"url":"https://www.baeldung.com/curl-rest"}' http://127.0.0.1:5000/url -i
