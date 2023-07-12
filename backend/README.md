@@ -14,8 +14,11 @@ The URL shortener application is used to map a URL to a shorter URL. Some reason
 This app was created using Python 3.11 and is suggested to create a python virtual environment to install the needed python modules.
 Example how to create your virtual environment in the directory your application code lives. 
 
+Make sure to be in the backend directory for the installation
 ```
-python3 -m venv env311
+cd backend
+python3 -m venv venv
+source venv/bin/activate
 
 ```
 
@@ -29,8 +32,12 @@ pip install -r requirements.txt
 Use this command to run test cases using unnitest.
 
 ```
- python -m unittest discover test
+ python -m unittest test_urls.py
 
+```
+Examples how to post your URL
+```
+curl -X POST -H "Content-Type: application/json" -d '{"url":"https://www.google.com/"}' http://127.0.0.1:5000/url -i
 ```
 
 
