@@ -1,0 +1,41 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "URL Shortner API",
+    "description": "URL shortening service is a service that lets a client submit a long URL which is then shortened to make it easier to use. This project was a suggestion from  [Coding Challenges](https://codingchallenges.fyi/challenges/challenge-url-shortener/)",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:5000/",
+      "description": "Development server description, e.g. Internal dev server for developing"
+    },
+    {
+      "url": "http://staging-api.example.com",
+      "description": "If a staging server existed you can add it here. e.g. Internal staging server for testing"
+    }
+  ],
+  "paths": {
+    "/urls": {
+      "get": {
+        "summary": "Returns a list of json objects where the object includes the long url, the short url and the key that are in the system.",
+        "description": "Optional extended description in CommonMark or HTML.",
+        "responses": {
+          "200": {
+            "description": "Returns a list of json objects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

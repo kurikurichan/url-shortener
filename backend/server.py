@@ -2,11 +2,23 @@ import time
 
 from flask import Flask, request, redirect
 from flask_restful import Api, Resource, reqparse, abort
+from flask_swagger_ui import get_swaggerui_blueprint
 from flask_sqlalchemy import SQLAlchemy
 import hashlib
 import base64
 app = Flask(__name__)
 
+SWAGGER_URL = '/api/docs'  # URL for exposing Swagger UI (without trailing '/')
+API_URL = '/static/swagger.json'  # Our API url (can of course be a local resource)
+
+# Call factory function to create our blueprint
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,  # Swagger UI static files will be mapped to '{SWAGGER_URL}/dist/'
+    API_URL,
+    config={  # Swagger UI config overrides
+        'app_name': "Url Shortener"
+    },
+)
 def generate_unique_string(url):
     # Calculate the SHA-256 hash of the URL
     hash_object = hashlib.sha256(url.encode())
@@ -89,4 +101,5 @@ def return_urls():
 # To see the relocation header work add the -L option
 
 if __name__ == '__main__':
+    app.register_blueprint(swaggerui_blueprint)
     app.run(debug=True, port=5000)
